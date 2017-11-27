@@ -1,0 +1,40 @@
+
+<p>Hi {{ currentUser.name }} </p>
+<p>Choose an answer for each of the questions and submit the test once done.</p>
+<p>Good luck!</p>
+<form *ngIf="trivQuestions.length ===3" (submit)="grade()" #formData="ngForm">
+    <div class="questions">
+        <p>{{ trivQuestions[0].question }}</p>
+        <select name="answer1" [(ngModel)]="answer1" required>
+            <option value={{trivQuestions[0].answers[0].isCorrect}} name="answer1">{{trivQuestions[0].answers[0].answer}}</option>
+            <option value={{trivQuestions[0].answers[1].isCorrect}} name="answer2">{{trivQuestions[0].answers[1].answer}}</option>
+            <option value={{trivQuestions[0].answers[2].isCorrect}} name="answer3">{{trivQuestions[0].answers[2].answer}}</option>
+        </select>
+    </div>
+    <div class="questions">
+        <p>{{ trivQuestions[1].question }}</p>
+        <select name="answer1" [(ngModel)]="answer2" required>
+            <option value={{trivQuestions[1].answers[0].isCorrect}} name="answer1">{{trivQuestions[1].answers[0].answer}}</option>
+            <option value={{trivQuestions[1].answers[1].isCorrect}} name="answer2">{{trivQuestions[1].answers[1].answer}}</option>
+            <option value={{trivQuestions[1].answers[2].isCorrect}} name="answer3">{{trivQuestions[1].answers[2].answer}}</option>
+        </select>
+    </div>
+    <div class="questions">
+        <p>{{ trivQuestions[2].question }}</p>
+        <select name="answer1" [(ngModel)]="answer3" required>
+            <option value={{trivQuestions[2].answers[0].isCorrect}} name="answer1">{{trivQuestions[2].answers[0].answer}}</option>
+            <option value={{trivQuestions[2].answers[1].isCorrect}} name="answer2">{{trivQuestions[2].answers[1].answer}}</option>
+            <option value={{trivQuestions[2].answers[2].isCorrect}} name="answer3">{{trivQuestions[2].answers[2].answer}}</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Submit!" [disabled]="!formData.valid">
+</form>
+
+{{answer1}}
+{{answer2}}
+{{answer3}}
+<!-- {{answer1|json}}
+{{answer2|json}}
+{{answer3|json}} -->
+<!-- {{trivQuestions |json}} -->

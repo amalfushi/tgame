@@ -1,0 +1,76 @@
+<div class="header">
+    <div class="nav_buttons">
+        <button [routerLink]="['/dashboard']">Home</button>
+        <button [routerLink]="['/new']">Add a Question</button>
+    </div>
+    <div class="logout">
+        <button (click)="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="main">
+    <form #formData="ngForm">
+        <div class="formField">
+            <label>Question: </label>
+            <textarea 
+                name="question" 
+                cols="30" 
+                rows="10"
+                required
+                ng-trim
+                minlength="15"
+                pattern="!^\w+( +\w+)*$"
+                [(ngModel)]="newQuestion.question"
+                #question="ngModel"
+                placeholder="Questions must be at least 15 characters..."
+            ></textarea>
+            <!-- {{ newQuestion | json}} -->
+        </div>
+
+        <div class="formField">
+            <label>Correct Answer: </label>
+            <input 
+                type="text" 
+                name="answer"
+                required
+                ng-trim
+                pattern="!^\w+( +\w+)*$"
+                [(ngModel)]="correct.answer"
+            >
+            <!-- {{ correct | json}} -->
+        </div>
+        
+        <div class="formField">
+            <label>Fake Answer 1: </label>
+            <input 
+                type="text" 
+                name="incorrect1"
+                required
+                ng-trim
+                pattern="!^\w+( +\w+)*$"
+                [(ngModel)]="incorrect1.answer"
+                minlength="2"
+            >
+            <!-- {{ incorrect1 | json}} -->
+        </div>
+
+        <div class="formField">
+            <label>Fake Answer 2: </label>
+            <input 
+                type="text" 
+                name="incorrect2"
+                required
+                ng-trim
+                pattern="!^\w+( +\w+)*$"
+                minlength="2"
+                [(ngModel)]="incorrect2.answer"
+            >
+            <!-- {{ incorrect2 | json}} -->
+        </div>
+        <button (click)="cancel()">Cancel</button>
+        <button 
+            [disabled]="!formData.valid"
+            (click)="addQuestion()"
+        >Add a Question</button>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+input{
+    width:194px;
+    padding: 2px;
+    border: thin solid black;
+}
+
+.error, .valid{
+    font-weight: bold;
+}
+
+.error{
+    color: darkred;
+}
+
+.valid{
+    color: darkgreen;
+}

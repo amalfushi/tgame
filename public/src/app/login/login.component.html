@@ -1,0 +1,24 @@
+<form (submit)="login()" #formData="ngForm">
+  <h3>Login</h3>
+  <input
+    type="text"
+    name="name"
+    placeholder="Please enter name..."
+    required
+    minlength="2"
+    pattern="(^[a-zA-Z]+$)"
+    [(ngModel)]="newUser.name"
+    #user = "ngModel"
+  >
+  <label class="error" *ngIf="!user.valid && user.dirty"> X </label>
+  <label class="valid" *ngIf="user.valid && user.dirty"> O </label>
+  <br>
+  
+  <input
+    type="submit" 
+    value="Enter"
+    [disabled]="!formData.valid"
+  >
+</form>
+
+<!-- {{newUser | json}} -->

@@ -1,0 +1,45 @@
+<div class="header">
+  <div class="nav_buttons">
+      <button [routerLink]="['/dashboard']">Home</button>
+      <button [routerLink]="['/new']">Add a Question</button>
+  </div>
+  <div class="logout">
+      <button (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="letsPlay">
+  <button [routerLink]="['/lets_play']">Play!</button>
+  <p>Click the button above to start the trivia game</p>
+</div>
+<!-- *************Create Status******
+*************Trivia Results*****
+*************SEARCH************* -->
+
+<!-- {{currentUser.lastScore}} -->
+<div *ngIf="currentUser.lastScore">
+  <h1>You scored {{currentUser.lastScore}} in the last round!</h1>
+</div>
+<div *ngIf="currentUser.canceled == true">
+  <h1>No question added!</h1>
+</div>
+<div *ngIf="currentUser.canceled == false">
+  <h1>Question added!</h1>
+</div>
+<!-- <input type="text" name="search" id="search" [(ngModel)]="queryString"> -->
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Score</th>
+    <th>Percentage</th>
+  </thead>
+  <tr *ngFor="let user of users" ><!--filter: queryString -->
+    <td>{{ user.name }}</td>
+    <td>{{ user.score }}/{{ user.possibleScore }}</td>
+    <td *ngIf="user.possibleScore > 0 ">{{ (user.score/user.possibleScore)*100 }}%</td>
+    <td *ngIf="user.possibleScore ===0">{{ user.possibleScore }}%</td>
+  </tr>
+</table>
+
+<!-- {{users |json}}
+{{queryString}} -->
